@@ -10,7 +10,8 @@ if ('serviceWorker' in navigator) {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(event) {
+  event.preventDefault(); 
   const fullscreenButton = document.getElementById('fullscreen-button');
 
   fullscreenButton.addEventListener('click', function() {
@@ -23,15 +24,25 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
       document.documentElement.msRequestFullscreen();
     }
+    
   });
 
   // Trigger button click after 5 seconds
   setTimeout(function() {
     fullscreenButton.click();
+    fullscreenButton.style.display = 'none';
+
   }, 5000); // 5000 milliseconds = 5 seconds
 });
 $(document).ready(function() {
   $('#app-menu').hide();
+  const userid=localStorage.getItem("userid");
+  const token=localStorage.getItem("token");
+  if(userid!=="" && token !=="" && userid!==undefined && token !==undefined && userid!==null && token !==null){
+
+    $('#app-menu').show();
+    $('#app-pin-wrapper').hide();
+  }
   // When the button is clicked
   $("#toggleButton").click(function() {
     // Toggle the visibility of the content div
