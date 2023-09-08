@@ -9,13 +9,18 @@ self.addEventListener('install', function (event) {
         cache.addAll([
           '/',
           '/index.html',
-		  '/src/js/jquery.js',
+          '/src/css/bootstrap.min.css',
+          '/src/js/bootstrap.min.js',
+		      '/src/js/jquery.js',
           '/src/js/app.js',
           '/src/css/app.css',
-          '/src/images/pwa.jpg',
-          'https://fonts.googleapis.com/css?family=Raleway:400,700',
-		  'src/js/kit.js',
-		  '/src/images/bg.avif'
+          '/src/images/favicon/apple-touch-icon.png',
+          '/src/images/favicon/favicon-32x32.png',
+          '/src/images/favicon/favicon-16x16.png',
+          '/src/images/favicon/site.webmanifest',
+          'https://fonts.googleapis.com/css?family=Oswald',
+		      '/src/js/kit.js',
+		      '/src/images/bg.avif'
         ]);
       })
   );
