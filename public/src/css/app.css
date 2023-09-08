@@ -388,10 +388,10 @@ body input, body h1, body h3, body a, body span {
   height: 8vw;
   max-height: 160px;
   min-height: 140px;
-  min-width: 100px;
+  min-width: 180px;
   position: relative;
   transition: transform 250ms;
-  width: calc(100% / 7);
+  width: calc(100% / 4);
 }
 #app #weather-section .menu-section-content .day-card:last-of-type {
   margin-right: 5px;
