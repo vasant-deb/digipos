@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>An Example PWA</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="/src/css/app.css">
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+ <div id="root">
+         <div id="app" class="logged-in">
+            <div id="app-info" class="info"><span class="time">2:39</span><span class="weather"><i class="fa-duotone fa-sun"></i><span class="weather-temperature-value">70</span><span class="weather-temperature-unit">°F</span></span></div>
+            <div id="app-pin-wrapper">
+               <input id="app-pin-hidden-input" maxlength="4" type="number" value="" disabled="">
+               <div id="app-pin">
+                  <div class="app-pin-digit focused"><span class="app-pin-digit-value"></span></div>
+                  <div class="app-pin-digit"><span class="app-pin-digit-value"></span></div>
+                  <div class="app-pin-digit"><span class="app-pin-digit-value"></span></div>
+                  <div class="app-pin-digit"><span class="app-pin-digit-value"></span></div>
+               </div>
+               <h3 id="app-pin-label">Enter PIN (1234)  <span id="app-pin-cancel-text">Cancel</span></h3>
+            </div>
+            <div id="app-menu">
+               <div id="app-menu-content-wrapper">
+                  <div id="app-menu-content">
+                     <div id="app-menu-content-header">
+                        <div class="app-menu-content-header-section">
+                           <div id="app-menu-info" class="info"><span class="time">2:39</span><span class="weather"><i class="fa-duotone fa-sun"></i><span class="weather-temperature-value">73</span><span class="weather-temperature-unit">°F</span></span></div>
+                           <div class="reminder">
+                              <div class="reminder-icon"><i class="fa-regular fa-bell"></i></div>
+                              <span class="reminder-text">Extra cool people meeting <span class="reminder-time">10AM</span></span>
+                           </div>
+                        </div>
+                        <div class="app-menu-content-header-section"><button id="sign-out-button" class="user-status-button clear-button" type="button"><i class="fa-solid fa-arrow-right-from-arc"></i></button></div>
+                     </div>
+                     
+                    
+					<button id="fullscreen-button">Go Fullscreen</button>
+					
+					<div id="weather-section" class="menu-section">
+                      <!--  <div class="menu-section-title"><i class="fa-solid fa-sun"></i><span class="menu-section-title-text">How's it look out there?</span></div> -->
+                        <div class="scrollable-component menu-section-content">
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">65<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-sun sunny"></i><span class="day-name">Mon</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">64<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-sun sunny"></i><span class="day-name">Tues</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">75<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-clouds cloudy"></i><span class="day-name">Wed</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">70<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-cloud-drizzle rainy"></i><span class="day-name">Thurs</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">62<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-cloud-bolt stormy"></i><span class="day-name">Fri</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">71<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-sun sunny"></i><span class="day-name">Sat</span></div>
+                           </div>
+                           <div class="day-card">
+                              <div class="day-card-content"><span class="day-weather-temperature">75<span class="day-weather-temperature-unit">°F</span></span><i class="day-weather-icon fa-duotone fa-clouds cloudy"></i><span class="day-name">Sun</span></div>
+                           </div>
+                        </div>
+                     </div>
+                     
+				 </div>
+               </div>
+            </div>
+            <div id="app-background">
+               <div id="app-background-image" class="background-image"></div>
+            </div>
+            <div id="sign-in-button-wrapper"><button id="sign-in-button" class="user-status-button clear-button" type="button"><i class="fa-solid fa-arrow-right-to-arc"></i></button></div>
+            <div id="app-loading-icon"><i class="fa-solid fa-spinner-third"></i></div>
+         </div>
+      </div>
+<script src="/src/js/jquery.js"></script>
+<script src="/src/js/app.js"></script>
+</body>
+</html>
