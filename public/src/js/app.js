@@ -8,24 +8,56 @@ if ('serviceWorker' in navigator) {
 }
 
 
-
-
+  
 document.addEventListener('DOMContentLoaded', function(event) {
-  event.preventDefault(); 
-  const fullscreenButton = document.getElementById('fullscreen-button');
+      let deferredPrompt;
+      const installButton = document.getElementById('install-button');
+      const fullscreenButton = document.getElementById('fullscreen-button');
 
-  fullscreenButton.addEventListener('click', function() {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-      document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-      document.documentElement.msRequestFullscreen();
-    }
-    
-  });
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the browser's default install prompt
+        e.preventDefault();
+        
+        // Store the event for later use
+        deferredPrompt = e;
+
+        // Show the install button
+        installButton.style.display = 'block';
+        
+        // Handle the button click to initiate the installation
+        installButton.addEventListener('click', () => {
+          // Prompt the user to install the PWA
+          deferredPrompt.prompt();
+          
+          // Wait for the user to respond to the prompt
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              // Installation was successful
+              console.log('PWA installed successfully');
+              installButton.style.display = 'none'; // Hide the install button
+            } else {
+              // Installation was declined
+              console.log('PWA installation declined');
+            }
+
+            // Reset the deferredPrompt
+            deferredPrompt = null;
+          });
+        });
+      });
+
+      // Full-screen button functionality (unchanged)
+      fullscreenButton.addEventListener('click', function() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      });
 
   // Trigger button click after 5 seconds
   setTimeout(function() {
