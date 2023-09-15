@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport"
+         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>DigiPOS</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+      <link rel="stylesheet" href="/src/css/app.css">
+      <link rel="manifest" href="/manifest.json">
+      <script src="/src/js/kit.js"></script>
+      <link rel="apple-touch-icon" sizes="180x180" href="/src/images/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/src/images/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/src/images/favicon/favicon-16x16.png">
+      <link rel="manifest" href="/src/images/favicon/site.webmanifest">
+      <link rel="stylesheet" href="/src/css/bootstrap.min.css">
+      <script src="/src/js/jquery.js"></script>
+      <script src="/src/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="/src/css/sale.css">
+   </head>
+   <body>
+      <div class="container-fluid sales">
+         <!--Start Row-->
+         <div class="row">
+            <div class="col-md-8 inline-flex mg30">
+               <button class="btn btn-primary myicons"> <i class="fa fa-home"></i></button>
+               <button class="btn btn-primary myicons"> <i class="fa fa-list"></i></button>
+               <button class="btn btn-primary myicons"> <i class="fa fa-registered"></i></button>
+               <button class="btn btn-primary myicons"> <i class="fa fa-maximize"></i></button>
+               <button class="btn btn-primary myicons" onclick="viewcalculator()"> <i class="fa fa-calculator"></i></button>
+               <input class="form-control" name="search" id="search" placeholder="Scan / Search Product By Code Name">
+            </div>
+            <!--End Row-->
+            <div class="col-md-4 mg30 add-user">
+               <select class="form-control">
+                  <option>Select Customer</option>
+               </select>
+               <button class="btn"> <i class="fa fa-user-plus"></i></button>   
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-8">
+               <div class="carousel">
+                  <div class="carousel__wrapper">
+                     <div class="carousel__header">
+                        <h2 class="carousel__headline">Categories
+                        </h2>
+                        <div class="carousel__controls">
+                           <button class="carousel__arrow disabled arrow-prev"></button>
+                           <button class="carousel__arrow arrow-next"></button>
+                        </div>
+                     </div>
+                     <ul class="carousel__content mycategories">
+                     </ul>
+                  </div>
+                  <div class="carousel__wrapper">
+                     <div class="carousel__header">
+                        <h2 class="carousel__headline">All Models
+                        </h2>
+                        <div class="carousel__controls">
+                           <button class="carousel__arrow disabled arrow-prev"></button>
+                           <button class="carousel__arrow arrow-next"></button>
+                        </div>
+                     </div>
+                     <ul class="carousel__content mymodels">
+                     </ul>
+                  </div>
+                  <div class="carousel__wrapper">
+                     <div class="carousel__header">
+                        <h2 class="carousel__headline">All Products
+                        </h2>
+                        <div class="carousel__controls">
+                           <button class="carousel__arrow disabled arrow-prev"></button>
+                           <button class="carousel__arrow arrow-next"></button>
+                        </div>
+                     </div>
+                     <ul class="carousel__content myproduct">
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               
+               <div class="left-content custom-card mb-3 p-3">
+                  <div class="main-table overflow-auto">
+                     <table class="mb-0 table table-striped">
+                        <thead class="position-sticky top-0">
+                           <tr>
+                              <th>PRODUCT</th>
+                              <th>PRICE</th>
+                              <th class="text-center">QTY</th>
+                              <th colspan="2">SUB TOTAL</th>
+                           </tr>
+                        </thead>
+                        <tbody class="border-0">
+                           <tr class="align-middle">
+                              <td class="text-nowrap text-nowrap ps-0">
+                                 <h4 class="product-name text-gray-900 mb-1 text-capitalize text-truncate">T-Shirt</h4>
+                              </td>
+                              <td class="text-nowrap">$ 20.00</td>
+                              <td>
+                                 <div class="counter d-flex align-items-center pos-custom-qty"><button type="button" class="counter__down d-flex align-items-center justify-content-center btn btn-primary">-</button><input type="text" class="hide-arrow" value="1"><button type="button" class="counter__up d-flex align-items-center justify-content-center btn btn-primary">+</button></div>
+                              </td>
+                              <td class="text-nowrap">$ 20.00</td>
+                              <td class="text-end remove-button pe-0"><button type="button" class="p-0 bg-transparent border-0 btn "><i class="fa fa-trash text-danger"></i></button></td>
+                           </tr>
+                           <tr class="align-middle">
+                              <td class="text-nowrap text-nowrap ps-0">
+                                 <h4 class="product-name text-gray-900 mb-1 text-capitalize text-truncate">T-Shirt</h4>
+                               
+                              </td>
+                              <td class="text-nowrap">$ 20.00</td>
+                              <td>
+                                 <div class="counter d-flex align-items-center pos-custom-qty"><button type="button" class="counter__down d-flex align-items-center justify-content-center btn btn-primary">-</button><input type="text" class="hide-arrow" value="1"><button type="button" class="counter__up d-flex align-items-center justify-content-center btn btn-primary">+</button></div>
+                              </td>
+                              <td class="text-nowrap">$ 20.00</td>
+                              <td class="text-end remove-button pe-0"><button type="button" class="p-0 bg-transparent border-0 btn "><i class="fa fa-times-circle text-danger"></i></button></td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>Subtotal</td>
+                              <td>1150</td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>Tax</td>
+                              <td>15</td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>Discount</td>
+                              <td>0.00</td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>Total</td>
+                              <td>1165</td>
+                           </tr>
+                           </tr>   
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="footer_panel">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="grandtotal">
+                           <span>Total Payable : $ 0.00</span>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-md-4 col-lg-4">
+                        <span>
+                           <fieldset class="form-group" append="%" id="__BVID__139">
+                              <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__139__BV_label_">Tax</legend>
+                              <div>
+                                 <div role="group" class="input-group">
+                                    <!----><input type="text" class="form-control is-valid" aria-describedby="OrderTax-feedback" label="Order Tax" id="__BVID__140">
+                                    <div class="input-group-append">
+                                       <div class="input-group-text">%</div>
+                                    </div>
+                                 </div>
+                                 <div id="OrderTax-feedback" class="invalid-feedback"></div>
+                                 <!----><!----><!---->
+                              </div>
+                           </fieldset>
+                        </span>
+                     </div>
+                     <div class="col-sm-12 col-md-4 col-lg-4">
+                        <span>
+                           <fieldset class="form-group" append="%" id="__BVID__142">
+                              <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__142__BV_label_">Discount</legend>
+                              <div>
+                                 <div role="group" class="input-group">
+                                    <!----><input type="text" class="form-control is-valid" aria-describedby="Discount-feedback" label="Discount" id="__BVID__143">
+                                    <div class="input-group-append">
+                                       <div class="input-group-text">$</div>
+                                    </div>
+                                 </div>
+                                 <div id="Discount-feedback" class="invalid-feedback"></div>
+                                 <!----><!----><!---->
+                              </div>
+                           </fieldset>
+                        </span>
+                     </div>
+                     <div class="col-sm-12 col-md-4 col-lg-4">
+                        <span>
+                           <fieldset class="form-group" id="__BVID__145">
+                              <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__145__BV_label_">Shipping</legend>
+                              <div>
+                                 <div role="group" class="input-group">
+                                    <!----><input type="text" class="form-control" aria-describedby="Shipping-feedback" label="Shipping" id="__BVID__146">
+                                    <div class="input-group-append">
+                                       <div class="input-group-text">$</div>
+                                    </div>
+                                 </div>
+                                 <div id="Shipping-feedback" class="invalid-feedback"></div>
+                                 <!----><!----><!---->
+                              </div>
+                           </fieldset>
+                        </span>
+                     </div>
+                     <div class="col-sm-12 col-md-3">
+                        <button type="button" class="btn btn-danger ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                        Reset
+                        </button>
+                     </div>
+                     <div class="col-sm-12 col-md-3">
+                        <button type="button" class="btn btn-success ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                        Card
+                        </button>
+                     </div>
+                     <div class="col-sm-12 col-md-3">
+                        <button type="button" class="btn btn-important ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                        Cash
+                        </button>
+                     </div>
+                     <div class="col-sm-12 col-md-3">
+                        <button type="button" class="btn btn-warning ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                        Gift Card
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+<div class="calculator" id="calc">
+      <div class="screen">
+			<form name="calc">
+				<input type="text" name="text" readonly id="screen">
+			</form>
+		</div>
+		<div class="cal-body">
+			<div class="btn">
+				<button class="num" onclick="document.calc.text.value+='7'">7</button>
+				<button class="num" onclick="document.calc.text.value+='8'">8</button>
+				<button class="num" onclick="document.calc.text.value+='9'">9</button>
+				<button class="del" onclick="del()">DEL</button>
+				<button class="num" onclick="document.calc.text.value+='4'">4</button>
+				<button class="num" onclick="document.calc.text.value+='5'">5</button>
+				<button class="num" onclick="document.calc.text.value+='6'">6</button>
+				<button onclick="document.calc.text.value+='+'">+</button>
+				<button class="num" onclick="document.calc.text.value+='1'">1</button>
+				<button class="num" onclick="document.calc.text.value+='2'">2</button>
+				<button class="num" onclick="document.calc.text.value+='3'">3</button>
+				<button onclick="document.calc.text.value+='-'">-</button>
+				<button onclick="document.calc.text.value+='.'">.</button>
+				<button class="num" onclick="document.calc.text.value+='0'">0</button>
+				<button onclick="document.calc.text.value+='/'">/</button>
+				<button onclick="document.calc.text.value+='*'">X</button>
+				<button class="reset" onclick="document.calc.text.value=''">RESET</button>
+				<button class="equal" onclick="document.calc.text.value= eval(calc.text.value)">=</button>
+			</div>
+		</div>
+</div>
+
+
+      <script src="/src/js/sale.js"></script>
+   </body>
+</html>

@@ -9,8 +9,12 @@ self.addEventListener('install', function (event) {
         cache.addAll([
           '/',
           '/index.html',
+          '/sales.html',
           '/src/css/bootstrap.min.css',
           '/src/js/bootstrap.min.js',
+          '/src/css/sales.css',
+          '/src/js/sales.js',
+          '/src/js/time.js',
 		      '/src/js/jquery.js',
           '/src/js/app.js',
           '/src/css/app.css',
