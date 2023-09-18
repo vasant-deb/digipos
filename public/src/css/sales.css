@@ -993,7 +993,12 @@ div#carousel-container,div#carousel-models,div#carousel-products {
 }
 #carousel-products .swiper-slide h2 {
     font-size: 16px;
+    margin-top: 10px;
 }
+#carousel-models .swiper-slide h2 {
+  margin-top: 10px;
+}
+
 /* end corousel */
 .messages-section {
   padding-bottom: 0px;
@@ -1462,3 +1467,4 @@ th {
  text-align: center;   
 }
 /*end table */
+.app-sidebar ::before { font-size: 24px !important;}

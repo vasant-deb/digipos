@@ -13,6 +13,8 @@ self.addEventListener('install', function (event) {
           '/src/css/bootstrap.min.css',
           '/src/js/bootstrap.min.js',
           '/src/css/sales.css',
+          '/src/css/toast.css',
+          '/src/js/toast.js',
           '/src/js/sales.js',
           '/src/js/time.js',
 		      '/src/js/jquery.js',

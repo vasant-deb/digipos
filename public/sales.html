@@ -17,7 +17,7 @@
       <link rel="stylesheet" href="/src/css/bootstrap.min.css">
       <script src="/src/js/jquery.js"></script>
       <script src="/src/js/bootstrap.min.js"></script>
-      
+      <link rel="stylesheet" href="/src/css/toast.css">
       <link rel="stylesheet" href="/src/css/sales.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,7 +89,7 @@
 
             <!--mY MODELS-->
 
-            <div class="header-title">
+            <div class="header-title mynd">
               <div class="headerp">
                 <p>Models</p>
               </div>
@@ -162,90 +162,20 @@
         </div>
 
         
-        <table style="width: 100%; table-layout: fixed">
+        <table style="width: 100%; table-layout: fixed" id="invoice-table">
           <thead>
             <tr>
               <th style="width: 50px; padding-left: 0;">Sn.</th>
-              <th style="width: 220px;">Item Name</th>
+              <th>Item Name</th>
              
               <th>QTY</th>
               <th class="text-center">Subtotal</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="invoice-items">
-              <td>01</td>
-              <td >Tropicana Purenectar Pomegr
-                <br>$ 100</td>
-              <td>   <div class="quantity" bis_skin_checked="1">
-                <div role="group" class="input-group" bis_skin_checked="1">
-                   <!---->
-                   <div class="input-group-prepend" bis_skin_checked="1"><span class="btn btn-primary btn-sm">-</span></div>
-                   <input class="form-control" type="number" value="1"> 
-                   <div class="input-group-append" bis_skin_checked="1"><span class="btn btn-primary btn-sm">+</span></div>
-                   <!---->
-                </div>
-             </div></td>
-              <td class="text-center">$ 100</td>
-            </tr>
-            <tr class="invoice-items">
-              <td>02</td>
-              <td >Tropicana Purenectar Pomegr
-                <br>$ 100</td>
-                <td>   <div class="quantity" bis_skin_checked="1">
-                  <div role="group" class="input-group" bis_skin_checked="1">
-                     <!---->
-                     <div class="input-group-prepend" bis_skin_checked="1"><span class="btn btn-primary btn-sm">-</span></div>
-                     <input class="form-control" type="number" value="1"> 
-                     <div class="input-group-append" bis_skin_checked="1"><span class="btn btn-primary btn-sm">+</span></div>
-                     <!---->
-                  </div>
-               </div></td>
-               <td class="text-center">$ 100</td>
-            </tr>
-            <tr class="invoice-items">
-              <td>03</td>
-              <td >Tropicana Purenectar Pomegr
-              <br>$ 100</td>
-              <td>   <div class="quantity" bis_skin_checked="1">
-                <div role="group" class="input-group" bis_skin_checked="1">
-                   <!---->
-                   <div class="input-group-prepend" bis_skin_checked="1"><span class="btn btn-primary btn-sm">-</span></div>
-                   <input class="form-control" type="number" value="1"> 
-                   <div class="input-group-append" bis_skin_checked="1"><span class="btn btn-primary btn-sm">+</span></div>
-                   <!---->
-                </div>
-             </div></td>
-             <td class="text-center">$ 100</td>
-            </tr>
-            <tr class="invoice-items">
-              <td>04</td>
-              <td >Tropicana Purenectar Pomegr
-                <br>$ 100</td>
-                <td>   <div class="quantity" bis_skin_checked="1">
-                  <div role="group" class="input-group" bis_skin_checked="1">
-                     <!---->
-                     <div class="input-group-prepend" bis_skin_checked="1"><span class="btn btn-primary btn-sm">-</span></div>
-                     <input class="form-control" type="number" value="1"> 
-                     <div class="input-group-append" bis_skin_checked="1"><span class="btn btn-primary btn-sm">+</span></div>
-                     <!---->
-                  </div>
-               </div></td>
-               <td class="text-center">$ 100</td>
-            </tr>
+          
 
-            <tr class="invoice-items">
-              <td>Subtotal</td>
-              <td></td>
-              <td></td>
-              <td class="text-center">$ 100</td>
-            </tr>
-            <tr class="invoice-items">
-              <td>HST</td>
-              <td></td>
-              <td></td>
-              <td class="text-center">$ 10.41</td>
-            </tr>
+            
             
          
           </tbody>
@@ -258,50 +188,46 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="grandtotal">
-                     <span>Total Payable : $ 0.00</span>
+                     <span>Total Payable : <span id="totalpayable">$ 0.00</span></span>
                   </div>
                </div>
               
            
              
                <div class="col-sm-12 col-md-3">
-                  <button type="button" class="btn btn-danger ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                  <button type="button" id="reset" class="btn btn-danger ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                   Reset
                   </button>
                </div>
                <div class="col-sm-12 col-md-3">
-                  <button type="button" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                  <button type="button" onclick="pay('Card')" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                   Card
                   </button>
                </div>
                <div class="col-sm-12 col-md-3">
-                  <button type="button" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
-                  Cash
-                  </button>
+                <button type="button" onclick="pay('Cash')" class="btn btn-black ripple btn-rounded btn-block mt-1">
+                  <i class="i-Power-2"></i> Cash
+                </button>
                </div>
                <div class="col-sm-12 col-md-3">
-                  <button type="button" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                  <button type="button" onclick="pay('Gift Card')" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                   Gift Card
                   </button>
                </div>
-               <div class="col-sm-12 col-md-3">
-                <button type="button" class="btn btn-danger ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
-                  Refund
-                </button>
-             </div>
-             <div class="col-sm-12 col-md-3">
-                <button type="button" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+               
+             <div class="col-sm-12 col-md-4">
+                <button type="button" id="general" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                 General
                 </button>
              </div>
-             <div class="col-sm-12 col-md-3">
-                <button type="button" class="btn btn-primary ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
-                Calculator
+             <div class="col-sm-12 col-md-4">
+                <button type="button" id="manual" class="btn btn-primary ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                Manual
                 </button>
              </div>
-             <div class="col-sm-12 col-md-3">
+             <div class="col-sm-12 col-md-4">
                 <button type="button" class="btn btn-primary ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
-                Home
+                Points Redeem
                 </button>
              </div>
             </div>
@@ -400,8 +326,12 @@
       </div>
 
       </div>
+      <audio id="clickSound">
+        <source src="/src/music/click.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+      <script src="/src/js/toast.js"></script>
       <script src="/src/js/sales.js"></script>
       <script src="/src/js/time.js"></script>
    </body>
