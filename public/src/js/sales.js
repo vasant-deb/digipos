@@ -210,6 +210,51 @@ function addTableRow(productName, productPrice,quantity,pid,sub,sno) {
   
 
 }
+function pay(modeofpayment){
+    const userid=localStorage.getItem('userid');
+
+    var clickSound = document.getElementById('clickSound');
+    clickSound.play();
+    $.ajax({
+        type: 'POST',
+        url: 'https://pwa.onlinebilling.ca/checkout',
+        data: {
+            modeofpayment: modeofpayment,
+            userid:userid,
+        },
+        success: function(response) {
+            if (response.error === false) {
+                var successSound = document.getElementById('successSound');
+                successSound.play();
+                const toasts = new Toasts({
+                    width: 300,
+                    timing: 'ease',
+                    duration: '0.5s',
+                    dimOld: false,
+                    position: 'top-right' // top-left | top-center | top-right | bottom-left | bottom-center | bottom-right
+                });
+                toasts.push({
+                    title: 'Success',
+                    content: 'Order Checkedout Successfully',
+                    style: 'success'
+                });
+    
+                $('#invoice-table tbody').empty();
+                $('#totalpayable').text('0.00');
+            }
+                else {
+                    // Authentication failed
+                    console.log('not found');
+                  
+                  }
+                },
+                error: function() {
+               //   $('#loginStatus').text('An error occurred while attempting to log in.');
+                }
+
+        });
+   
+}
  /* end corouse */
  function de(){
  $('.swiper-slide').on('click', function() {
