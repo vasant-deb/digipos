@@ -92,6 +92,98 @@ document.addEventListener("DOMContentLoaded", function() {
   
 });
 
+function updatecart(action, pid, currentQuantity) {
+    var clickSound = document.getElementById('clickSound');
+    clickSound.play();
+    // Get the input element for the current product
+    var quantityInput = document.getElementById(`quantity${pid}`);
+    const userid=localStorage.getItem('userid');
+    // Parse the current quantity from the input
+    var quantity = parseInt(quantityInput.value);
+    
+    // Check the action and update the quantity accordingly
+    if (action === 'inc') {
+        quantity++;
+    } else if (action === 'dec' && quantity >= 0) { // Ensure quantity doesn't go negative
+        quantity--;
+    }
+
+    if(action==='del'){
+        quantity=0;
+    }
+    
+    // Update the input field with the new quantity
+    quantityInput.value = quantity;
+    
+    // You can also send the updated quantity to the server or perform other actions as needed
+    // For example, you can use AJAX to update the cart on the server.
+    // You can send 'pid' and 'quantity' to your 'updatecart' API endpoint.
+     $.ajax({
+        type: 'POST',
+        url: 'https://pwa.onlinebilling.ca/updatecart',
+         data: {
+             pid: pid,
+             quantity: quantity,
+             userid:userid
+         },
+         success: function(response) {
+            var newupdatedata=response.mydata;
+            $('#invoice-table tbody').empty();
+            // Assuming newupdatedata is an array of products
+            var subtotal = 0; // Initialize subtotal
+            sno=1;
+            newupdatedata.forEach(function(product) {
+                var productName = product.product_name;
+                var productPrice = product.discounted_price;
+                var quantity = product.quantity;
+                var pid = product.product_id;
+                var sub = (productPrice * quantity).toFixed(2);
+        
+                // Add the current product's sub to the subtotal
+                subtotal += parseFloat(sub);
+        
+                // Call the function to add the table row dynamically for each product
+                addTableRow(productName, productPrice, quantity, pid, sub,sno);
+                sno++;
+            });
+        
+            // Calculate the HST (assuming 13% HST, you can adjust this as needed)
+            var hst = (subtotal * 0.13).toFixed(2);
+        
+            // Calculate the total (subtotal + HST)
+            var total = (parseFloat(subtotal) + parseFloat(hst) * 1.00).toFixed(2);
+        
+            // Add the subtotal row
+            var subtotalRow = `
+                <tr class="invoice-items" id="insubtotal">
+                    <td>Subtotal</td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center">$ ${subtotal}</td>
+                </tr>
+            `;
+        
+            // Add the HST (Tax) row
+            var hstRow = `
+                <tr class="invoice-items" id="inhst">
+                    <td>HST</td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center">$ ${hst}</td>
+                </tr>
+            `;
+        
+            // Append the subtotal and HST rows to the table
+            $('#invoice-table tbody').append(subtotalRow);
+            $('#invoice-table tbody').append(hstRow);
+            $('#totalpayable').text(total);
+         },
+        error: function() {
+            // Handle error
+        }
+     });
+}
+
 
 function addTableRow(productName, productPrice,quantity,pid,sub,sno) {
     
@@ -102,13 +194,14 @@ function addTableRow(productName, productPrice,quantity,pid,sub,sno) {
             <td>
                 <div class="quantity mycart${pid}" id="card">
                     <div role="group" class="input-group">
-                        <div id="dec${pid}" class="input-group-prepend"><span class="btn btn-primary btn-sm">-</span></div>
+                        <div onclick="updatecart('dec',${pid},${quantity})" class="input-group-prepend"><span class="btn btn-primary btn-sm">-</span></div>
                         <input class="form-control" id="quantity${pid}"  name="quantity${pid}" type="number" value="${quantity}">
-                        <div id="inc${pid}" class="input-group-append"><span class="btn btn-primary btn-sm">+</span></div>
+                        <div  onclick="updatecart('inc',${pid},${quantity})" class="input-group-append"><span class="btn btn-primary btn-sm">+</span></div>
                     </div>
                 </div>
             </td>
             <td class="text-center">$ ${sub}</td>
+            <td><i onclick="updatecart('del',${pid},'0')" class="fa fa-close text-danger"></i></td>
         </tr>
     `;
 
@@ -200,7 +293,7 @@ function addTableRow(productName, productPrice,quantity,pid,sub,sno) {
             
                 // Add the subtotal row
                 var subtotalRow = `
-                    <tr class="invoice-items">
+                    <tr class="invoice-items" id="insubtotal">
                         <td>Subtotal</td>
                         <td></td>
                         <td></td>
@@ -210,7 +303,7 @@ function addTableRow(productName, productPrice,quantity,pid,sub,sno) {
             
                 // Add the HST (Tax) row
                 var hstRow = `
-                    <tr class="invoice-items">
+                    <tr class="invoice-items" id="inhst">
                         <td>HST</td>
                         <td></td>
                         <td></td>
@@ -271,7 +364,7 @@ $('#reset').on('click', function() {
             $('#invoice-table tbody').empty();
           },
             error: function() {
-           //   $('#loginStatus').text('An error occurred while attempting to log in.');
+            // $('#loginStatus').text('An error occurred while attempting to log in.');
             }
           });
 
