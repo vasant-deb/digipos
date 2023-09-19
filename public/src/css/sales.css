@@ -931,7 +931,7 @@ button, a {
     width:max-content !important;
 }
 .swiper-slide h2 {
-  font-size: 18px;
+  font-size: 16px;
   margin:0px;
 }
 /* Optional styling for navigation buttons */
@@ -956,23 +956,23 @@ div#carousel-container,div#carousel-models,div#carousel-products {
 }
 /* corousel end */
 .header-title p {
-    width: max-content; 
-     padding: 2px 20px; 
-     align-items: center; 
-     justify-content: center; 
-     font-family: Inter; 
-     font-size: 18px; 
-     font-weight: 600; 
-     line-height: 35px; 
-     color: #000000; 
-     background: #FFFFFFFF; 
-     opacity: 1; 
-     border-radius: 4px; 
-     border-width: 1px; 
-     border-color: #323842FF; 
-     border-style: solid; 
-     margin:10px 30px;
-     text-align:center;
+  width: max-content;
+  padding: 2px 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 35px;
+  color: #337ab7;
+  background: #ffffff;
+  opacity: 1;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #323842FF;
+  /* border-style: solid; */
+  margin: 10px 30px;
+  text-align: center;
    }
    .header-title button {
     float: right;
@@ -984,8 +984,8 @@ div#carousel-container,div#carousel-models,div#carousel-products {
    display:inline-flex;
 }
 .proimage{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
 
 #carousel-products .swiper-slide {
@@ -1004,7 +1004,7 @@ div#carousel-container,div#carousel-models,div#carousel-products {
   padding-bottom: 0px;
   margin-left: 10px;
   padding-left: 10px;
-  height: 80vh;
+  height: 75vh;
   border-radius: 10px;
   box-shadow: 0 4px 20px 1px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.08);
 }
@@ -1036,7 +1036,7 @@ input#search,.sales select{
     font-size: 1.2rem;
     font-weight: 800;
     height: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     padding: 5px;
     text-align: center;
 }
@@ -1105,7 +1105,7 @@ input#search,.sales select{
 }
 .footer_panel {
     position: fixed;
-    bottom: 20px;
+    bottom: 0px;
     margin-right: 10px;
 }
 /* Calculator */
@@ -1468,3 +1468,79 @@ th {
 }
 /*end table */
 .app-sidebar ::before { font-size: 24px !important;}
+div#carousel-container,#carousel-container .swiper-slide {
+  
+  background: black;
+}
+#carousel-container .swiper-slide h2 {
+  font-size: 14px;
+  margin: 0px;
+  font-weight: 600;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+}
+.xmodels img.proimage {
+  width: 50px;
+  height: 50px;
+}
+.swiper-container {
+  width: 85%;
+  overflow: hidden;
+}
+.categoryarrow.controls-slide {
+  display: inline-flex;
+  position: relative;
+  right: 0%;
+  top: 90%;
+}
+.modelarrow.controls-slide {
+  display: inline-flex;
+  position: relative;
+  right: 0%;
+  top: 125%;
+}
+#carousel-productsx .swiper-slide {
+  width: 25% !important;
+  height: 150px !important;
+  margin:5px 0px;
+}
+.footer_panel .col-md-3,.footer_panel .col-md-4 {
+  padding: 0px 2px;
+}
+.input-group-prepend {
+  position: relative;
+  left: 20%;
+  z-index: 99;
+}
+.input-group-append {
+  position: relative;
+  right: 20%;
+  z-index: 99;
+}
+.swiper-container.xmodels.swiper-initialized.swiper-horizontal {
+  width: 85%;
+  margin: 0px auto;
+}
+.swiper-button-prev.prevxm {
+  left: -75% !important;
+  position: relative !important;
+}
+
+.modelarrow.controls-slide {
+  width: 100%;
+}
+
+.swiper-button-next.nextxm {
+  left: 80% !important;
+}
+th {
+  font-size: 16px;
+}
+.footer_panel .form-group input {
+  margin-bottom: 5px;
+}
+span#buttonupdate {
+  bottom: -15px;
+  position: relative;
+}

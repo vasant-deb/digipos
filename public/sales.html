@@ -71,7 +71,7 @@
               <div class="headerp">
                 <p>Categories</p>
               </div>
-                <div class="controls-slide">
+                <div class="categoryarrow controls-slide">
                 <div class="swiper-button-prev prevxc"> > </div>
                 <div class="swiper-button-next nextxc"> > </div>
                 </div>
@@ -93,7 +93,7 @@
               <div class="headerp">
                 <p>Models</p>
               </div>
-                <div class="controls-slide">
+                <div class="modelarrow controls-slide">
                 <div class="swiper-button-prev prevxm"> > </div>
                 <div class="swiper-button-next nextxm"> > </div>
                 </div>
@@ -116,20 +116,21 @@
               <div class="headerp">
                 <p>All Products</p>
               </div>
-                <div class="controls-slide">
-                <div class="swiper-button-prev prevxp"> > </div>
-                <div class="swiper-button-next nextxp"> > </div>
-                </div>
+               
             </div>
             <div class="projects-section-header">
-                <!--TEst-->
-                <div class="swiper-container xproducts">
-                    <div class="swiper-wrapper" id="carousel-products">
-                        <!-- Carousel items for "models" section will be dynamically added here -->
-                    </div>
-                </div>
-                  <!--end -->
-            </div>
+              <div class="container xproducts">
+                  <div class="row" id="carousel-productsx">
+                      <!-- Dynamic items here -->
+                  </div>
+                  <div id="pagination" class="text-center mt-4">
+                      <ul class="pagination justify-content-center">
+                          <!-- Pagination links will be added here -->
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          
             <!--END Products-->
             
           
@@ -162,7 +163,7 @@
         </div>
 
         
-        <table style="width: 100%" id="invoice-table">
+        <table style="width: 100%" class="table-striped" id="invoice-table">
           <thead>
             <tr>
               <th style="width: 50px; padding-left: 0;">Sno.</th>
@@ -179,17 +180,47 @@
             
          
           </tbody>
+         
+          
+         
         </table>
     
       
 
 
          <div class="footer_panel">
+          <div class="form-group">
+                   
+            <span class="col-md-3  text-center">
+              
+             
+              <td class="text-center" id="">Subtotal<input type="number"  class="form-control" id="putsubtotal" value="0.00"></td>
+          </span>
+          <span class="col-md-3  text-center" id="inhst">
+            
+           
+            <td class="text-center" id="">HST<input type="number" disabled class="form-control" id="puthst" value="0.00"></td>
+          </span>
+          <span class="col-md-3  text-center" id="inhst">
+            
+           
+            <td class="text-center" id="">Discount<input type="number" class="form-control" id="putdiscount" value="0.00"></td>
+          </span>
+          <span class="col-md-3  text-center" id="buttonupdate">
+            
+           
+            <td class="text-center" id=""><button class="btn btn-primary" id="updatefinal"><i class="fa fa-refresh" aria-hidden="true"></i> Update</button></td>
+          </span>
+      
+          </div> 
             <div class="row">
                <div class="col-md-12">
+             
                   <div class="grandtotal">
                      <span>Total Payable : <span id="totalpayable">$ 0.00</span></span>
                   </div>
+
+               
                </div>
               
            
