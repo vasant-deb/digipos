@@ -1003,7 +1003,7 @@ div#carousel-container,div#carousel-models,div#carousel-products {
 .messages-section {
   padding-bottom: 0px;
   margin-left: 10px;
-  padding-left: 10px;
+  padding-left: 0px;
   height: 75vh;
   border-radius: 10px;
   box-shadow: 0 4px 20px 1px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.08);
@@ -1543,4 +1543,35 @@ th {
 span#buttonupdate {
   bottom: -15px;
   position: relative;
+}
+.projects-section-header.add-user.textbox {
+  z-index: 9999;
+  background: white;
+  width: 100%;
+  position: relative;
+}
+.header-right {
+  position: fixed;
+  border: solid 1px #F2F2F2;
+  background:White;
+  z-index:9999;
+}
+
+.projects-section-header.add-user.textbox {
+  margin-top: 10%;
+}
+
+table#invoice-table td {
+  padding-left: 10px !important;
+}
+
+table#invoice-table th {
+  padding-left: 10px !important;
+}
+.mr5 {
+  margin-right: 5px;
+}
+
+span#date {
+  margin-right: 20px;
 }
