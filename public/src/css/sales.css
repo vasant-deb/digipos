@@ -1688,7 +1688,7 @@ a#fullscreen-button:hover,a#opencalculator:hover {
   color: white;
 }
 
-#userform,.searchresults{
+#userform,.searchresults,#paginationx{
   display: none;
 }
 /*end popup */
