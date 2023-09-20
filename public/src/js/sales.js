@@ -1,5 +1,7 @@
 /* corousel start */
 document.addEventListener("DOMContentLoaded", function() {
+    const fullscreenButton = document.getElementById('fullscreen-button');
+
     // Make an API call to retrieve data
     $.ajax({
         type: 'GET',
@@ -124,6 +126,51 @@ document.addEventListener("DOMContentLoaded", function() {
             $('#loginStatus').text('An error occurred while attempting to retrieve data.');
         }
     });
+    function populateCustomerDropdown(customers) {
+        const customerSelect = $('#customerSelect');
+        
+        // Clear existing options
+        customerSelect.empty();
+        
+        // Add a default option
+        customerSelect.append('<option>Select Customer</option>');
+
+        // Add customer options
+        customers.forEach(function(customer) {
+            customerSelect.append(`<option value="${customer.id}">${customer.customerName}</option>`);
+        });
+    }
+function getusers(){
+           // AJAX request to fetch customer data
+           $.ajax({
+            type: 'GET', // Adjust the HTTP method as needed
+            url: 'https://pwa.onlinebilling.ca/getcustomers', // Replace with your server endpoint URL
+            dataType: 'json', // Specify the expected data type
+            success: function(response) {
+                // Check if the response contains customer data
+                if (response && response.customers) {
+                    const customers = response.customers;
+                    populateCustomerDropdown(customers);
+                }
+            },
+            error: function() {
+                console.error('Error fetching customer data.');
+            }
+        }); 
+}
+getusers();
+    fullscreenButton.addEventListener('click', function() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      });
+
 
 
 
@@ -527,12 +574,178 @@ $('#general').on('click', function() {
     });
 
 
+    
     function search(){
-       
+        $('.searchresults').show();
+        $('.hidesearch').hide();
+        $('#back-button').show();
+        
+        
        var keyword=$('#searchkeyword').val();
        if(keyword==""){
         errorotoast('Empty Field','Please Type Keyword to search','error');
        }
+       $.ajax({
+        type: 'POST', // Adjust the HTTP method as needed (e.g., POST, GET)
+        url: 'https://pwa.onlinebilling.ca/search', // Replace with your API endpoint for user authentication
+        data: {
+            keywords: keyword
+        },
+        success: function(response) {
+            if(response.error){
+                errorotoast('Search',response.message,'error');
+                die();
+            }else{
+        
+                var products = response.data;
+                var resultsContainer = $('#searchResultsContainer');
+
+                // Clear previous search results
+                resultsContainer.empty();
+
+
+                
+                const productsPerPage = 12; // Number of products to show per page
+
+
+                // Function to display products for a specific page
+                function displayProducts(page) {
+                    const startIndex = (page - 1) * productsPerPage;
+                    const endIndex = startIndex + productsPerPage;
+
+                    const productSlidesx = products.slice(startIndex, endIndex).map((product, index) => {
+                        const isLastInRow = (index + 1) % 5 === 0; // Check if this is the 4th item in the row
+                
+                        const productCard = `
+                            <div class="col-md-3 card" id="product${product.id}">
+                                <img class="proimage" src="https://api.1stopwireless.ca/public/uploads/products/${product.image}"/>
+                                <h2>${product.name}</h2>
+                            </div>
+                        `;
+                
+                        // Add the "clearfix" class after every 4th item
+                        if (isLastInRow) {
+                            return `<div class="clearfix"></div>`;
+                        } else {
+                            return productCard;
+                        }
+                    });
+                    // Add the "products" slides to the carousel container
+                    resultsContainer.html(productSlidesx.join(''));
+                    de();
+                }
+
+                // Function to generate pagination links
+                function generatePaginationLinks() {
+                    const totalPages = Math.ceil(products.length / productsPerPage);
+                    const $pagination = $('#paginationx ul');
+                    $pagination.empty();
+
+                    for (let i = 1; i <= totalPages; i++) {
+                        const $li = $('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+                        $li.click(function() {
+                            displayProducts(i);
+                            $li.addClass('active').siblings().removeClass('active');
+                        });
+                        $pagination.append($li);
+                    }
+
+                    // Show the first page by default
+                    displayProducts(1);
+                    $pagination.find('li:first-child').addClass('active');
+                }
+
+             
+                // Initialize pagination
+                generatePaginationLinks();
+
+                // Check if there are search results
+               
+        }
+      //  $('#searchother').hide();
+        },
+        error: function() {
+            // $('#loginStatus').text('An error occurred while attempting to log in.');
+        }
+    });
     }
     
 //end reset call
+$('#userclose').on('click', function(event){
+   
+      event.preventDefault();
+      $('#userform').hide();
+   
+  });
+$('#openuseradd').on('click', function() {
+
+    var clickSound = document.getElementById('clickSound');
+    clickSound.play();
+    // Get the id attribute of the clicked swiper-slide element
+    $('#userform').show();
+});
+
+$('#userpost').submit(function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Get the form data
+      // Get the form data
+      var customerName= $('#cname').val();
+      var street = $('#cstreet').val();
+      var city = $('#ccity').val();
+      var dob= $('#cdate').val();
+      var email = $('#cemail').val();
+      var phone = $('#cphone').val();
+
+      $.ajax({
+        type: 'POST', // Adjust the HTTP method as needed (e.g., POST, GET)
+        url: 'https://pwa.onlinebilling.ca/addcustomer', // Replace with your API endpoint for user authentication
+        data: {
+            customerName: customerName,
+            street:street,
+            city:city,
+            dob:dob,
+            email:email,
+            phone:phone
+        },
+        success: function(response) {
+            if(response.error){
+                errorotoast('Customer',response.message,'error');
+            }else{
+            const toasts = new Toasts({
+                width: 300,
+                timing: 'ease',
+                duration: '0.5s',
+                dimOld: false,
+                position: 'top-right' // top-left | top-center | top-right | bottom-left | bottom-center | bottom-right
+            });
+            toasts.push({
+                title: 'Customer',
+                content: 'Customer Added Successfully',
+                style: 'success'
+            });
+
+           getusers();
+        }
+        $('#userform').hide();
+        },
+        error: function() {
+            // $('#loginStatus').text('An error occurred while attempting to log in.');
+        }
+    });
+
+
+
+});
+$('#back-button').on('click', function() {
+    var resultsContainer = $('#searchResultsContainer');
+
+    // Clear previous search results
+    resultsContainer.empty();
+
+    $('.hidesearch').show();
+    $('.searchresults').hide();
+    $('#back-button').hide();
+    
+  
+});

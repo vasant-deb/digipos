@@ -1683,4 +1683,68 @@ span#date {
 .text-left{
   text-align: left;
 }
+a#fullscreen-button:hover,a#opencalculator:hover {
+  background: black;
+  color: white;
+}
+
+#userform,.searchresults{
+  display: none;
+}
 /*end popup */
+/* search result */
+div#searchResultsContainer h2 {
+  font-size: 14px;
+}
+.searchresults {
+  margin-top: 5%;
+  display: block !important;
+  position: absolute;
+  width:100% !important;
+}
+div#searchResultsContainer {
+  width: 100%;
+}
+.searchresults {
+  position: absolute;
+  top: 10%;
+}
+div#searchResultsContainer {
+  width: 60% !important;
+  margin: 0px auto;
+  text-align: center;
+}
+div#paginationx {
+  position: absolute;
+  bottom: 0;
+  right: 60%;
+}
+.searchresults .card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 10px 0px;
+  height: 180px;
+}
+a#back-button {
+  width: max-content;
+  background: black;
+  border-radius: 10px;
+  color: white;
+  padding: 0px 20px;
+  position: relative;
+  right: -10%;
+  top: 100%;
+  margin: 0px auto;
+  display: none;
+}
+i.fa.fa-arrow-left.link-icon {
+  margin-right: 10px;
+}
+a#back-button:hover {
+  text-decoration: none;
+  font-size: 16px;
+}
+/* end search result */
