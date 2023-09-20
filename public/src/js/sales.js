@@ -125,7 +125,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+
+
 });
+function errorotoast(title,message,type){
+    var errorSound = document.getElementById('errorSound');
+    errorSound.play();
+    const toasts = new Toasts({
+        width: 300,
+        timing: 'ease',
+        duration: '0.5s',
+        dimOld: false,
+        position: 'top-right' // top-left | top-center | top-right | bottom-left | bottom-center | bottom-right
+    });
+    toasts.push({
+        title: title,
+        content: message,
+        style: type
+    });
+}
 
 function updatecart(action, pid, currentQuantity) {
     var clickSound = document.getElementById('clickSound');
@@ -460,4 +478,61 @@ $('#reset').on('click', function() {
 
 
 });
+$('.popup').on('click', function(event){
+    if( $(event.target).is('.popup-close') || $(event.target).is('.popup') ) {
+      event.preventDefault();
+      $('#generalform').hide();
+    }
+  });
+$('#general').on('click', function() {
+
+    var clickSound = document.getElementById('clickSound');
+    clickSound.play();
+    // Get the id attribute of the clicked swiper-slide element
+    $('#generalform').show();
+});
+
+    // Listen for form submission
+    $('#generalpost').submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Get the form data
+          // Get the form data
+          var oldtotal= $('#totalpayable').text();
+          var totalnew = $('#finalprice').val();
+          const totalAmount = parseFloat(totalnew);
+          const taxRate = 0.13; // 13% tax rate
+          const subtotal = totalAmount / (1 + taxRate);
+          const tax = totalAmount - subtotal;
+          var discount=oldtotal-totalnew;
+          
+          $('#putdiscount').val(discount.toFixed(2));
+          // Update the subtotal and tax in the HTML
+          $('#putsubtotal').val(subtotal.toFixed(2));
+          $('#puthst').val(tax.toFixed(2));
+          $('#totalpayable').text(totalAmount.toFixed(2));
+          $('#generalform').hide();
+    });
+    $('#updatefinal').on('click', function() {
+
+        var clickSound = document.getElementById('clickSound');
+        clickSound.play();
+        // Get the id attribute of the clicked swiper-slide element
+        var subtotal=$('#putsubtotal').val();
+        var hst=$('#puthst').val();
+        var discount=$('#putdiscount').val();
+        var newtotal= parseFloat(subtotal) +  parseFloat(hst);
+       
+        $('#totalpayable').text(newtotal.toFixed(2));
+    });
+
+
+    function search(){
+       
+       var keyword=$('#searchkeyword').val();
+       if(keyword==""){
+        errorotoast('Empty Field','Please Type Keyword to search','error');
+       }
+    }
+    
 //end reset call
