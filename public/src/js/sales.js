@@ -763,6 +763,144 @@ $('#openuseradd').on('click', function() {
 	$('#userform').show();
 });
 
+$('#manual').on('click', function() {
+
+    var total=$('#totalpayable').text();
+    if(total=="$ 0.00"){
+        errorotoast('Empty Cart', 'Please Add Items in Cart', 'error');
+    }else{
+
+	var clickSound = document.getElementById('clickSound');
+	clickSound.play();
+	// Get the id attribute of the clicked swiper-slide element
+	$('#manualform').show();
+    $('#manualclose').hide();
+    $('#amountleft').text(total);
+    
+}
+});
+$('#manualclose').on('click', function(event) {
+
+	event.preventDefault();
+	$('#manualform').hide();
+
+});
+// Initialize an empty array to store payment data
+var payments = [];
+
+$('#manualpost').submit(function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Get the selected value from the select option with id "modeofpayment"
+    var modeofpayment = $('#modeofpayment').val();
+
+    // Get the current total
+    var total = parseFloat($('#amountleft').text());
+
+    // Get the entered amount
+    var amount = parseFloat($('#amount').val());
+
+    if (total === 0.00) {
+      
+        // Total is already paid, do nothing
+        return;
+    }
+
+    if (amount <= 0 || isNaN(amount)) {
+        // Amount entered is not valid, handle this as needed (e.g., show an error message)
+        return;
+    }
+
+    if (amount > total) {
+        // Amount entered is greater than the remaining total, set it to the total
+        amount = total;
+    }
+
+    // Subtract the entered amount from the total
+    total -= amount;
+
+    // Add the payment data to the payments array
+    payments.push({
+        modeofpayment: modeofpayment,
+        amount: amount.toFixed(2)
+    });
+
+    // Update the displayed total and amount left
+    $('#amount').val('');
+    $('#amountleft').text(total.toFixed(2));
+
+    // Log the payments array (you can use it as needed)
+    console.log(payments);
+
+    if (total === 0.00) {
+        const userid = localStorage.getItem('userid');
+        var finaltotal=parseFloat($('#totalpayable').text()).toFixed(2);
+        var finalsub=parseFloat($('#putsubtotal').val()).toFixed(2);
+	    var finalhst=parseFloat($('#puthst').val()).toFixed(2);
+        var finaldiscount=parseFloat($('#putdiscount').val()).toFixed(2);
+
+        var customerid = $('#customerSelect').val();
+
+// Check if a customer is selected
+if (customerid !== 'Select Customer') {
+    // Customer is selected, you can use the customerid
+    console.log('Selected customerid:', customerid);
+} else {
+    // No customer is selected
+    customerid='0';
+}
+
+        $.ajax({
+            type: 'POST', // Adjust the HTTP method as needed (e.g., POST, GET)
+            url: 'https://pwa.onlinebilling.ca/manualcheckout', // Replace with your API endpoint for user authentication
+            data: {
+                userid: userid,
+                finaltotal:finaltotal,
+                finalsub:finalsub,
+                finalhst:finalhst,
+                finaldiscount:finaldiscount,
+                customerid:customerid,
+                payments:JSON.stringify(payments)
+            },
+            success: function(response) {
+                if (response.error === false) {
+                    var successSound = document.getElementById('successSound');
+                    successSound.play();
+                    const toasts = new Toasts({
+                        width: 300,
+                        timing: 'ease',
+                        duration: '0.5s',
+                        dimOld: false,
+                        position: 'top-right' // top-left | top-center | top-right | bottom-left | bottom-center | bottom-right
+                    });
+                    toasts.push({
+                        title: 'Success',
+                        content: 'Order Checkedout Successfully',
+                        style: 'success'
+                    });
+    
+                    $('#invoice-table tbody').empty();
+                    $('#totalpayable').text('0.00');
+                    
+                    $('#putsubtotal').val(0.00);
+                    $('#puthst').val(0.00);
+                    $('#putdiscount').val(0.00);
+                    $('#manualform').hide();
+                } else {
+                    // Authentication failed
+                    console.log('not found');
+    
+                }
+            },
+            error: function() {
+                // $('#loginStatus').text('An error occurred while attempting to log in.');
+            }
+        });
+
+
+    }
+});
+
 $('#userpost').submit(function(e) {
 	e.preventDefault(); // Prevent the default form submission
 

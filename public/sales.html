@@ -254,12 +254,12 @@
               
            
              
-               <div class="col-sm-12 col-md-3">
+               <div class="col-sm-12 col-md-4">
                   <button type="button" id="reset" class="btn btn-danger ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                   Reset
                   </button>
                </div>
-               <div class="col-sm-12 col-md-3">
+             <!-- <div class="col-sm-12 col-md-3">
                   <button type="button" onclick="pay('Card')" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                   Card
                   </button>
@@ -274,7 +274,12 @@
                   Gift Card
                   </button>
                </div>
-               
+               <div class="col-sm-12 col-md-4">
+                <button type="button" class="btn btn-primary ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
+                Points Redeem
+                </button>
+             </div>
+               --> 
              <div class="col-sm-12 col-md-4">
                 <button type="button" id="general" class="btn btn-black ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
                 General
@@ -285,11 +290,7 @@
                 Manual
                 </button>
              </div>
-             <div class="col-sm-12 col-md-4">
-                <button type="button" class="btn btn-primary ripple btn-rounded btn-block mt-1"><i class="i-Power-2"></i>
-                Points Redeem
-                </button>
-             </div>
+             
             </div>
          </div>
        
@@ -440,6 +441,32 @@
         </div> 
       </div> 
 
+      <div class="popup" id="manualform" role="alert">
+        <div class="popup-container">
+          <a href="#0" id="manualclose" class="popup-close img-replace">Close</a>
+          <form method="post" id="manualpost">
+           
+            <label class="text-left">Amount</label>
+          <div class="form-group">
+            <input class="form-control" step=".01" name="amount" id="amount" type="number"/>
+          </div>
+          <label class="text-left">Mode of Payment</label>
+          <div class="form-group">
+            <select class="form-control" name="modeofpayment" id="modeofpayment">
+              <option>Credit/Debit Card</option>
+              <option>Cash</option>
+              <option>Gift Card</option>
+              <option>Points Redeem</option>
+            </select>
+          </div>
+          <label class="text-left">Amount Left : $ <span id="amountleft">0.00</span></label>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
+        </div> 
+      </div> 
+     
 
       <audio id="clickSound">
         <source src="/src/music/click.mp3" type="audio/mpeg">

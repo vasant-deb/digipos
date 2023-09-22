@@ -1004,7 +1004,7 @@ div#carousel-container,div#carousel-models,div#carousel-products {
   padding-bottom: 0px;
   margin-left: 10px;
   padding-left: 0px;
-  height: 75vh;
+  height: 80vh;
   border-radius: 10px;
   box-shadow: 0 4px 20px 1px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.08);
 }
@@ -1688,7 +1688,7 @@ a#fullscreen-button:hover,a#opencalculator:hover {
   color: white;
 }
 
-#userform,.searchresults,#paginationx{
+#userform,.searchresults,#paginationx,#manualform{
   display: none;
 }
 /*end popup */
