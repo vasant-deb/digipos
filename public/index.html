@@ -6,7 +6,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DigiPOS</title>
- 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
   <link rel="stylesheet" href="/src/css/app.css">
   <link rel="manifest" href="/manifest.json">
@@ -85,7 +86,7 @@
                         </div>
                         <div class="app-menu-content-header-section">
                            <button id="fullscreen-button" class="user-status-button clear-button"><i class="fa-solid fa-expand"></i></button>
-                           <button style="display: none;" id="install-button" class="user-status-button clear-button"><i class="fa-solid fa-download"></i></button>
+                           <button style="display: none;" id="install-button" class="user-status-button clear-button"><i class="fa-solid fa-download"></i>  INSTALL APP NOW</button>
                            
                           
                         </div>
@@ -116,16 +117,16 @@
                         </div>
                         <div class="scrollable-component menu-section-content">
                         <div class="day-card">
-                           <div class="day-card-content"><i class="day-weather-icon fa-duotone fa-receipt cloudy"></i><span class="day-name">Previous Receiptss</span></div>
+                           <div class="day-card-content"><i class="day-weather-icon fa-duotone fa-receipt cloudy"></i><span class="day-name">Previous Receipts</span></div>
                         </div>
                         <div class="day-card">
-                           <div class="day-card-content"><i class="day-weather-icon fa-duotone fa-users cloudy"></i><span class="day-name">Users</span></div>
+                           <a href="customers.html" class="day-card-content"><i class="day-weather-icon fa-duotone fa-users cloudy"></i><span class="day-name">Customers</span></div>
                         </div>
                         <div class="day-card">
                            <div class="day-card-content"><i class="day-weather-icon fa-duotone fa-undo cloudy"></i><span class="day-name">Refund</span></div>
                         </div>
                         <div class="day-card">
-                           <div class="day-card-content"><i class="day-weather-icon fa-duotone fa-arrow-right-from-arc cloudy"></i><span class="day-name">Logout</span></div>
+                           <div class="day-card-content" id="logout"><i class="day-weather-icon fa-duotone fa-arrow-right-from-arc cloudy"></i><span class="day-name">Logout</span></div>
                         </div>
                          </div>
 

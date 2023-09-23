@@ -23,7 +23,7 @@ self.addEventListener('install', function (event) {
           '/src/images/favicon/site.webmanifest',
           'https://fonts.googleapis.com/css?family=Oswald',
           '/src/js/kit.js',
-          '/src/images/bg.avif'
+          '/src/images/bg.webp'
         ]);
       })
   );
@@ -50,3 +50,4 @@ self.addEventListener('fetch', function (event) {
       })
   );
 });
+  // Function to request fullscreen

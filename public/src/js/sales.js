@@ -56,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 					// Add the "products" slides to the carousel container
 					$('#carousel-productsx').html(productSlidesx.join(''));
-					de();
+                    de();
+					
 				}
 
 				// Function to generate pagination links
@@ -80,13 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}
 
 				// Sample product data (replace with your actual data)
-				for (let i = 1; i <= 20; i++) {
-					products.push({
-						id: i,
-						name: `Product ${i}`,
-						image: `product${i}.jpg`
-					});
-				}
+				
 
 				// Initialize pagination
 				generatePaginationLinks();
@@ -116,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 				// Initialize Swiper for "products" section
 
-				de();
+				
 			} else {
 				console.log('Not found');
 				$('#loginStatus').text('No Data Found');
@@ -644,7 +639,7 @@ $('#updatefinal').on('click', function() {
 	var subtotal = $('#putsubtotal').val();
 	var hst = $('#puthst').val();
 	var discount = $('#putdiscount').val();
-	var newtotal = parseFloat(subtotal) + parseFloat(hst);
+	var newtotal = parseFloat(subtotal) + parseFloat(hst) - parseFloat(discount) ;
 
 	$('#totalpayable').text(newtotal.toFixed(2));
 });

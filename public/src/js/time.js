@@ -33,3 +33,20 @@
 
     // Update the date and time every second (1000 milliseconds)
     setInterval(updateDateTime, 1000);
+
+    function requestFullscreen() {
+      
+        const element = document.documentElement;
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+      }
+    
+      // Call the requestFullscreen function when the PWA loads
+      window.addEventListener('load', requestFullscreen);

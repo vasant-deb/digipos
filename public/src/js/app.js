@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         } else if (document.documentElement.msRequestFullscreen) {
           document.documentElement.msRequestFullscreen();
         }
+        localStorage.setItem('fullscreen', 'true');
+
       });
 
   // Trigger button click after 5 seconds
@@ -110,6 +112,7 @@ $(document).ready(function() {
           // You can also store user-related data in localStorage, if needed.
           localStorage.setItem('userid', userid);
           localStorage.setItem('token', response.token); // Assuming the API provides an authentication token.
+          
         } else {
           // Authentication failed
           console.log('not found');
@@ -120,6 +123,16 @@ $(document).ready(function() {
         $('#loginStatus').text('An error occurred while attempting to log in.');
       }
     });
+  }); 
+
+  $("#logout").click(function() {
+    // Toggle the visibility of the content div
+   
+    localStorage.clear();
+    $('#app-menu').hide();
+    $('#app-pin-wrapper').show();
+    $('#loginForm').trigger('reset');
+    $('#loginStatus').text('Logout successful.');
   });
 });
 

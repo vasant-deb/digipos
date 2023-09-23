@@ -160,7 +160,7 @@ body input, body h1, body h3, body a, body span {
   z-index: 1;
 }
 #app #app-background #app-background-image {
-  background-image: url("/src/images/bg.avif");
+  background-image: url("/src/images/bg.webp");
   height: 100%;
   transition: filter 250ms, transform 250ms;
   width: 100%;
@@ -975,4 +975,12 @@ div#loginStatus {
   color: white;
   font-size: 1em;
   padding: 0.75em;
+}
+button#fullscreen-button {
+  visibility: hidden;
+}
+button#install-button {
+  width: 100% !important;
+  padding: 10px 20px !important;
+  color: white !important;
 }
